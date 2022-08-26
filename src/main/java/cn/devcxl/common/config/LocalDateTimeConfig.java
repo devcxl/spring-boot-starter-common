@@ -71,6 +71,11 @@ public class LocalDateTimeConfig {
         };
     }
 
+    /**
+     * 自定义json转换 LocalDateTime 转为 timestamp
+     *
+     * @return
+     */
     @Bean
     @ConditionalOnProperty(prefix = "spring.common", name = "date2timestamp", havingValue = "true")
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {

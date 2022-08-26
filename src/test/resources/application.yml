@@ -1,4 +1,9 @@
 spring:
+    jackson:
+        serialization:
+            write-dates-as-timestamps: true
+            write-date-keys-as-timestamps: false
+            write-date-timestamps-as-nanoseconds: false
 
     application:
         name: test-api

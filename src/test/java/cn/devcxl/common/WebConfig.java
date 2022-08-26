@@ -12,15 +12,12 @@ import javax.annotation.Resource;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Resource
-    private LimitInterceptorImpl limitInterceptor;
 
     @Resource
     private AuthInterceptorImpl authInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(limitInterceptor).addPathPatterns("/**");
         registry.addInterceptor(authInterceptor).addPathPatterns("/**");
     }
 }
