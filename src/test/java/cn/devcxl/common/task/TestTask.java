@@ -1,4 +1,4 @@
-package cn.devcxl.common;
+package cn.devcxl.common.task;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
  * @author devcxl
  */
 @Slf4j
-public class TestTask implements Runnable, Callable<String> {
+public class TestTask implements Runnable{
     private final String orderId;
 
     public TestTask(String orderId) {
@@ -18,15 +18,9 @@ public class TestTask implements Runnable, Callable<String> {
     @Override
     public void run() {
         try {
-            call();
+            log.info("删除order:{}", orderId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public String call() throws Exception {
-        log.info("删除order:{}", orderId);
-        return orderId;
     }
 }

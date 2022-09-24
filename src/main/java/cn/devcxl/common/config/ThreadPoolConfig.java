@@ -41,6 +41,10 @@ public class ThreadPoolConfig {
         log.info("ThreadPoolTaskExecutor:[{}] core:{},max:{} queue:{}", poolNamePrefix, corePoolSize, maxPoolSize, queueCapacity);
     }
 
+    /**
+     * 线程池配置
+     * @return
+     */
     @Bean
     public ThreadPoolTaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor poolExecutor = new ThreadPoolTaskExecutor();
@@ -59,6 +63,10 @@ public class ThreadPoolConfig {
         return poolExecutor;
     }
 
+    /**
+     * 任务调度器配置
+     * @return
+     */
     @Bean
     public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
         ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();

@@ -3,6 +3,7 @@ package cn.devcxl.common.exception.handler;
 import cn.devcxl.common.Resp;
 import cn.devcxl.common.exception.*;
 import cn.devcxl.common.exception.enums.CommonErrorCode;
+import cn.hutool.extra.servlet.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.xml.bind.ValidationException;
@@ -107,10 +109,12 @@ public class GlobalExceptionHandler {
      * @param e
      * @return 错误信息
      */
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedException.class)
-    public Resp<String> handlerClientException(UnauthorizedException e) {
-        log.error("未认证异常", e);
+    public Resp<String> handlerClientException(UnauthorizedException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        String clientIP = ServletUtil.getClientIP(request);
+        log.error("{}访问{}未认证",clientIP,requestURI, e);
         return Resp.fail(e.getErrorCode());
     }
 

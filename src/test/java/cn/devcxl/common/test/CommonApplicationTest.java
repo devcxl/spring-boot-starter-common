@@ -1,5 +1,6 @@
-package cn.devcxl.common;
+package cn.devcxl.common.test;
 
+import cn.devcxl.common.task.TestTask;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
