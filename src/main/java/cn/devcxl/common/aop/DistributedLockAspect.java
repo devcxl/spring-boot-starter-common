@@ -62,7 +62,7 @@ public class DistributedLockAspect {
             //获取入参
             Object[] args = pjp.getArgs();
             // 类名方法名作为分布式锁的key
-            key = distributedLock.keyPrefix() + "_" + method + "_" + uri + "_" + JSONObject.wrap(args);
+            key = distributedLock.keyPrefix() + "_" + clientIP + "_" + method + "_" + uri + "_" + JSONObject.wrap(args);
             value = distributedLock.valuePrefix();
         } else {
             Signature signature = pjp.getSignature();
